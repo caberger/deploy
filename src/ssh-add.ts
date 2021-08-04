@@ -29,7 +29,7 @@ export async function addSshKey(name: string, key: string) {
         fs.writeFileSync(fileName, key)
         core.info("ssh key installed")
         fs.chmodSync(fileName, 0o400)
-        await display(fileName)
+//        await display(fileName)
     } catch (error) {
         console.error(error.message)
         core.setFailed(error.message)
@@ -41,19 +41,19 @@ export async function addKownHost(server: string) {
     core.info(`created ${ssh}`)
     const knownHosts = join(ssh, "known_hosts")
     const cmd = `ssh-keyscan -H -t rsa -v ${server}  >> ${knownHosts}`
-    core.info(cmd)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
 }
+/*
 async function display(folder: string) {
     const {stdout, stderr} = await execPromise(`ls -l ${folder}`)
     core.info(stdout)
 }
+*/
 export async function copyFiles(identityFile: string, source: string, server: string, user: string, destination: string) {
     const sourceFolder = resolveHomeFolder(source)
     const cmd = `scp -i ${identityFile} -r ${sourceFolder} ${user}@${server}:${destination}`
-    core.info(cmd)
+    core.info(`cp ${sourceFolder} ${destination}`)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
-    console.log(cmd)
 }
