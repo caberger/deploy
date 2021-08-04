@@ -35,7 +35,7 @@ export async function addSshKey(name: string, key: string) {
     return fileName   
 }
 export async function addKownHost(server: string) {
-    io.mkdirP("~/.ssh")
+    await io.mkdirP("~/.ssh")
     const cmd = `ssh-keyscan -H -t rsa -v ${server}  >> ~/.ssh/known_hosts`
     core.info(cmd)
     const {stdout, stderr} = await execPromise(cmd)
