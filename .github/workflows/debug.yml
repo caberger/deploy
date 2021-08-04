@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: prepare upload
         run: |
-          mkdir "~/deployment/"
+          mkdir -p ~/deployment
           echo "this is a test" > ~/deployment/test.txt
 
       - name: install ssh key
