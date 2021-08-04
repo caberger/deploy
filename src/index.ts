@@ -16,7 +16,7 @@ async function run() {
         core.info(`file ${identityFileName} created`)
         await addKownHost(params.server)
         const source = resolveHomeFolder(params.sourceFolder)
-        //await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
+        await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
     } catch (error) {
         core.setFailed(error.message)
     }
