@@ -21,7 +21,7 @@ const params = new Params()
 params.name =  core.getInput("ssh-key-name")
 params.key = core.getInput("ssh-private-key")
 params.server = core.getInput("server")
-params.sourceFolder = resolveHomeFolder(core.getInput("source-folder"))
+params.sourceFolder = core.getInput("source-folder")
 params.destinationFolder = core.getInput("destination-folder")
 
 export default params

@@ -26,6 +26,8 @@ jobs:
           ssh-private-key:  ${{ secrets.FS_CLOUD_ABERGER }}
           ssh-key-name: fs
           server: fs.cloud.htl-leonding.ac.at
+          source-folder: "~/deployment"
+          destinationFolder: "mist/deploy"
       - name: list result
         run: |
           ls -l ~
