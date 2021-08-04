@@ -13,7 +13,7 @@ inputs:
     description: the destination server
     required: true
     default: "www.example.com"
-  source-folder:
+  source:
     description: the source folder
     required: true
     default: "~/deployment/"
