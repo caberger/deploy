@@ -43,6 +43,7 @@ export async function addKownHost(server: string) {
     core.info(cmd)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
+    fs.chmodSync(knownHosts, 0o400)
 }
 export async function copyFiles(identityFile: string, source: string, server: string, user: string, destination: string) {
     const sourceFolder = resolveHomeFolder(source)
