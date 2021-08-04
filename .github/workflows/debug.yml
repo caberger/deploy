@@ -17,7 +17,7 @@ jobs:
         id: install-ssh
         uses: caberger/deploy@v1.0
         with:
-          ssh-private-key: "abs test"
+          ssh-private-key:  ${{ secrets.FS_CLOUD_ABERGER }}
           ssh-key-name: fs
           server: fs.cloud.htl-leonding.ac.at
       - name: list result
@@ -25,4 +25,7 @@ jobs:
           ls -l ~
           cat ~/sshkeys/fs
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
 

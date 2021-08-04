@@ -1,5 +1,5 @@
-name: install keys and deploy to server
-description: 'Greet someone and record the time'
+name: deploy to server
+description: scp a directory from the build host to a destination server
 inputs:
   ssh-private-key:
     description: private ssh key for destination server
@@ -13,6 +13,14 @@ inputs:
     description: the destination server
     required: true
     default: "www.example.com"
+  source-folder:
+    description: the source folder
+    required: true
+    default: "~/demo/"
+  destination-folder:
+    description: the destination folder
+    required: true
+    default: "~/tmp/"
 
 outputs:
   key-file: # id of output

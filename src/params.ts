@@ -1,9 +1,12 @@
 import * as core from "@actions/core"
+import {resolveHomeFolder} from "./util"
 
 class Params {
     name: string
     key: string
     server: string
+    sourceFolder = "~/deployment"
+    destinationFolder = "./dest"
 
     verify() {
         const ok = this.name && this.key && this.server
@@ -18,5 +21,7 @@ const params = new Params()
 params.name =  core.getInput("ssh-key-name")
 params.key = core.getInput("ssh-private-key")
 params.server = core.getInput("server")
+params.sourceFolder = resolveHomeFolder(core.getInput("source-folder"))
+params.destinationFolder = core.getInput("destination-folder")
 
 export default params
