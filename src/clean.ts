@@ -4,6 +4,8 @@ import * as io from "@actions/io"
 import params from "./params"
 
 try {
+    console.log("clean...")
+    core.info("clean ssh keys")
     params.verify()
     io.rmRF(sshKeyDir)
     core.info(`${sshKeyDir} removed`)
