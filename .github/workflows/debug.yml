@@ -31,7 +31,7 @@ jobs:
           ssh-private-key:  ${{ secrets.FS_CLOUD_ABERGER }}
           ssh-key-name: fs
           server: fs.cloud.htl-leonding.ac.at
-          source-folder: "~/deployment"
+          source-folder: "~/deployment/*"
           destination-folder: "mist/deploy"
           user: aberger
 
