@@ -23,6 +23,6 @@ jobs:
       - name: list result
         run: |
           ls -l ~
-          cat ~/ssh-keys/fs
+          cat ~/sshkeys/fs
 
 
