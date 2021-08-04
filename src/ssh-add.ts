@@ -4,13 +4,14 @@ import * as io from "@actions/io"
 import {join} from "path"
 import * as core from "@actions/core"
 
-const SSH_KEY_DIR = "sshkeys"
+export const SSH_KEY_DIR = "sshkeys"
+
+export const sshKeyDir = join(os.userInfo().homedir, SSH_KEY_DIR)
 
 export function addSshKey(name: string, key: string) {
-    const folder = join(os.userInfo().homedir, SSH_KEY_DIR)
-    const fileName = join(folder, name)
+    const fileName = join(sshKeyDir, name)
     try {
-        io.mkdirP(folder)
+        io.mkdirP(sshKeyDir)
         fs.writeFileSync(fileName, key)
     } catch (error) {
         console.error(error.message)

@@ -1,12 +1,12 @@
 import * as core from "@actions/core"
-import {addSshKey} from "./ssh-add"
-
+import {sshKeyDir} from "./ssh-add"
+import * as io from "@actions/io"
 import params from "./params"
 
 try {
     params.verify()
-    const fileName = addSshKey(params.name, params.key)
-    core.info(`file ${fileName} created`)
+    io.rmRF(sshKeyDir)
+    core.info(`${sshKeyDir} removed`)
 } catch (error) {
     core.setFailed(error.message)
 }
