@@ -1,5 +1,5 @@
 import * as core from "@actions/core"
-import {addSshKey} from "./ssh-add"
+import {addSshKey, addKownHost} from "./ssh-add"
 import {resolveHomeFolder} from "./utils"
 
 import params from "./params"
@@ -14,6 +14,7 @@ async function run() {
         const identityFileName = await addSshKey(params.name, params.key)
         core.setOutput("key-file", identityFileName)
         core.info(`file ${identityFileName} created`)
+        await addKownHost(params.server)
         const source = resolveHomeFolder(params.sourceFolder)
         await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
     } catch (error) {
