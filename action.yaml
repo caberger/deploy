@@ -1,4 +1,4 @@
-name: 'Hello World'
+name: Deploy To Server
 description: 'Greet someone and record the time'
 inputs:
   ssh-private-key:
