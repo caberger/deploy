@@ -15,8 +15,8 @@ inputs:
     default: "www.example.com"
 
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  key-file: # id of output
+    description: the name of the ssh file created
 runs:
   using: node12
   main: dist/index.js
