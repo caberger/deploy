@@ -1,6 +1,6 @@
 import * as core from "@actions/core"
 import {addSshKey} from "./ssh-add"
-import {resolveHomeFolder} from "./util"
+import {resolveHomeFolder} from "./utils"
 
 import params from "./params"
 import {copyFiles} from "./ssh-add"
