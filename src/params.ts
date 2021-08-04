@@ -7,8 +7,10 @@ class Params {
 
     verify() {
         const ok = this.name && this.key && this.server
-        const msg = `invalid params: name=${this.name} key=${this.key}`
-        throw new Error(msg)
+        if (!ok) {
+            const msg = `invalid params: name=${this.name} key=${this.key}, server=${this.server}`
+            throw new Error(msg)
+        }
     }
 }
 
