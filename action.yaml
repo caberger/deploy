@@ -21,6 +21,10 @@ inputs:
     description: the destination folder
     required: true
     default: "tmp/"
+  user:
+    description: the user name on the destination server
+    required: true
+    default: root
 
 outputs:
   key-file: # id of output
