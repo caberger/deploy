@@ -9,7 +9,7 @@ import {exec} from "child_process"
 import {homeDir, resolveHomeFolder} from "./utils"
 
 export const SSH_KEY_DIR = "sshkeys"
-const ssh = resolveHomeFolder(".ssh")
+const ssh = join(homeDir(), ".ssh")
 
 export const sshKeyDir = join(homeDir(), SSH_KEY_DIR)
 const execPromise = util.promisify(exec)
@@ -37,7 +37,9 @@ export async function addSshKey(name: string, key: string) {
 }
 export async function addKownHost(server: string) {
     await io.mkdirP(ssh)
-    const cmd = `ssh-keyscan -H -t rsa -v ${server}  >> ${ssh}/known_hosts`
+    core.info(`created ${ssh}`)
+    const knownHosts = join(ssh, "known_hosts")
+    const cmd = `ssh-keyscan -H -t rsa -v ${server}  >> ${knownHosts}`
     core.info(cmd)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
