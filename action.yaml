@@ -1,10 +1,19 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  ssh-private-key:
+    description: private ssh key for destination server
     required: true
-    default: 'World'
+    default: "this is not a valid key"
+  ssh-key-name:
+    description: the file name that is used to store the key (no folder)
+    required: true
+    default: "server.pk"
+  server:
+    description: the destination server
+    required: true
+    default: "www.example.com"
+
 outputs:
   time: # id of output
     description: 'The time we greeted you'

@@ -4,8 +4,8 @@
   "description": "github action to deploy build artifacts to server by ssh and scp",
   "main": "index.js",
   "scripts": {
-    "start": "echo usage: npm run build",
-    "build": "ncc build index.js --license licenses.txt"
+    "start": "npm run build && node dist/index.js",
+    "build": "ncc build src/index.ts --license licenses.txt --minify"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,12 @@
   "homepage": "https://github.com/caberger/deploy#readme",
   "dependencies": {
     "@actions/core": "^1.4.0",
-    "@actions/github": "^5.0.0"
+    "@actions/github": "^5.0.0",
+    "@actions/io": "^1.1.1"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.29.0"
+    "@types/node": "^16.4.11",
+    "@vercel/ncc": "^0.29.0",
+    "typescript": "^4.3.5"
   }
 }
