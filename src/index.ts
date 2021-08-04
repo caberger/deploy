@@ -15,7 +15,7 @@ async function run() {
         core.setOutput("key-file", identityFileName)
         core.info(`file ${identityFileName} created`)
         const source = resolveHomeFolder(params.sourceFolder)
-        copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
+        await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
     } catch (error) {
         core.setFailed(error.message)
     }

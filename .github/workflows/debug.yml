@@ -33,12 +33,10 @@ jobs:
           server: fs.cloud.htl-leonding.ac.at
           source-folder: "~/deployment"
           destination-folder: "mist/deploy"
+
       - name: display result
         run: |
-          ls -l ~
-          cat ~/sshkeys/fs
-          mkdir "~/deployment/"
-          echo "this is a test" > ~/deployment/test.txt
+          cat ~/deployment/test.txt
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3

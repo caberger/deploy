@@ -36,6 +36,7 @@ export async function addSshKey(name: string, key: string) {
 export async function copyFiles(identityFile: string, source: string, server: string, user: string, destination: string) {
     const sourceFolder = resolveHomeFolder(source)
     const cmd = `scp -i ${identityFile} -r ${source} ${user}@${server}:${destination}`
+    core.info(cmd)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
     console.log(cmd)
