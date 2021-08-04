@@ -21,5 +21,8 @@ jobs:
           ssh-key-name: fs
           server: fs.cloud.htl-leonding.ac.at
       - name: list result
-        run: ls -l ~
+        run: |
+          ls -l ~
+          cat ~/ssh-keys/fs
+
 

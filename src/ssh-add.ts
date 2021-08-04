@@ -4,7 +4,7 @@ import * as io from "@actions/io"
 import {join} from "path"
 import * as core from "@actions/core"
 
-const SSH_KEY_DIR = "sshkeys"
+const SSH_KEY_DIR = "ssh-keys"
 
 export function addSshKey(name: string, key: string) {
     const folder = join(os.userInfo().homedir, SSH_KEY_DIR)
