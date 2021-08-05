@@ -1,28 +1,24 @@
-import * as core from "@actions/core"
+import {join} from "path"
 
-class Params {
-    name: string
-    key: string
-    server: string
-    sourceFolder = "~/deployment"
-    destinationFolder = "./dest"
-    user = "root"
+export class Params {
+    sshKeyName!: string
+    key!: string
+    server!: string
+    source!: string
+    destinationFolder!: string
+    user!: string
+    tempPath: string
 
+    get identityFile() {
+        return join(this.tempPath, this.sshKeyName)
+    }
     verify() {
-        const ok = this.name && this.key && this.server
+        const ok = this.sshKeyName && this.key && this.server
         if (!ok) {
-            const msg = `invalid params: server=${this.server} name=${this.name} key=${this.key}`
+            const msg = `invalid params: server=${this.server} name=${this.sshKeyName} key=${this.key}`
             throw new Error(msg)
         }
     }
 }
 
-const params = new Params()
-params.name =  core.getInput("ssh-key-name")
-params.key = core.getInput("ssh-private-key")
-params.server = core.getInput("server")
-params.sourceFolder = core.getInput("source")
-params.destinationFolder = core.getInput("destination-folder")
-params.user = core.getInput("user")
-
-export default params
+export default Params

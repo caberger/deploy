@@ -3,10 +3,10 @@ name: deployment test
 on:
   workflow_dispatch:
     inputs:
-      debug_enabled:
+      debug:
         description: enable tmate console debugging     
         required: false
-        default: "false"
+        default: "disabled"
   push:
     branches: [ main ]
 
@@ -41,5 +41,5 @@ jobs:
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+        if: ${{ github.event_name == "workflow_dispatch" && github.event.inputs.debug == "enabled" }}
 

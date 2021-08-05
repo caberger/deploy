@@ -1,7 +1,7 @@
 import * as core from "@actions/core"
 import {sshKeyDir} from "./ssh-add"
 import * as io from "@actions/io"
-import params from "./params"
+import params from "./startup"
 
 async function cleanUp() {
     try {

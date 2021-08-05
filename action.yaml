@@ -8,7 +8,7 @@ inputs:
   ssh-key-name:
     description: the file name that is used to store the key (no folder)
     required: true
-    default: "server.pk"
+    default: "server_rsa"
   server:
     description: the destination server
     required: true
@@ -18,7 +18,7 @@ inputs:
     required: true
     default: "~/deployment/"
   destination-folder:
-    description: the destination folder
+    description: the destination folder, relative to the home path of the user
     required: true
     default: "tmp/"
   user:
