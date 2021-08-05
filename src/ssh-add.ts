@@ -47,7 +47,7 @@ export async function addToConfigFile(host: string, user: string, hostName: stri
 HOST ${host}
 \tUser ${user}
 \tHostname ${hostName}
-\tdentityFile ${identityFile}
+\tIdentityFile ${identityFile}
 `
     core.info(`add to ${config}`)
     core.info(configEntry)
