@@ -27,6 +27,7 @@ async function testSetup() {
     params.sshKeyName = "test"
     params.key = "not a key"
     params.server = "www.example.com"
+    params.user = "johndoe"
 
     params.tempPath = join(process.cwd(), "target")
     await io.mkdirP(params.tempPath)

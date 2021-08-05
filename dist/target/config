@@ -1,0 +1,15 @@
+
+HOST test
+User undefined
+Hostname www.example.com
+IdentityFile /home/aberger/Documents/git/deploy/dist/target/test
+
+HOST test
+User johndoe
+Hostname www.example.com
+IdentityFile /home/aberger/Documents/git/deploy/dist/target/test
+
+HOST test
+	User johndoe
+	Hostname www.example.com
+	dentityFile /home/aberger/Documents/git/deploy/dist/target/test
