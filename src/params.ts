@@ -8,6 +8,7 @@ export class Params {
     destinationFolder!: string
     user!: string
     tempPath: string
+    sshDir: string
 
     get identityFile() {
         return join(this.tempPath, this.sshKeyName)

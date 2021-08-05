@@ -5,18 +5,16 @@ import * as core from "@actions/core"
 import * as util from "util"
 import {exec} from "child_process"
 
-import {homeDir, resolveHomeFolder} from "./utils"
+import {resolveHomeFolder} from "./utils"
+import params from "./startup"
 
-export const SSH_KEY_DIR = "sshkeys"
-const ssh = join(homeDir(), ".ssh")
+//export const SSH_KEY_DIR = "sshkeys"
+const sshFolder = params.sshDir
 
-export const sshKeyDir = join(homeDir(), SSH_KEY_DIR)
 const execPromise = util.promisify(exec)
 
 export async function addSshKey(fileName: string, key: string) {
     try {
-        core.info(`create folder ${sshKeyDir}`)
-        await io.mkdirP(sshKeyDir)
         core.info(`write to ${fileName}`)
         fs.writeFileSync(fileName, key)
         core.info("ssh key installed")
@@ -28,9 +26,9 @@ export async function addSshKey(fileName: string, key: string) {
     return fileName   
 }
 export async function addKownHost(server: string) {
-    await io.mkdirP(ssh)
-    core.info(`created ${ssh}`)
-    const knownHosts = join(ssh, "known_hosts")
+    await io.mkdirP(sshFolder)
+    core.info(`created ${sshFolder}`)
+    const knownHosts = join(sshFolder, "known_hosts")
     const cmd = `ssh-keyscan -H -t rsa -v ${server}  >> ${knownHosts}`
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
@@ -41,4 +39,13 @@ export async function copyFiles(identityFile: string, source: string, server: st
     core.info(`cp ${sourceFolder} ${destination}`)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
+}
+function addToConfigFile(host: string, user: string, hostName: string, identityFile: string) {
+    const config = join(sshFolder, "config")
+    const configEntry = `
+HOST ${host}
+User ${user}
+Hostname ${hostName}
+IdentityFile ${identityFile}
+`
 }
