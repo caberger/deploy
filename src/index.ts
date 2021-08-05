@@ -15,7 +15,7 @@ async function run() {
         const identityFileName = await addSshKey(params.identityFile, params.key)
         core.setOutput("key-file", identityFileName)
         core.info(`file ${identityFileName} created`)
-        addToConfigFile(params.sshDir, params.sshKeyName, params.user, params.server, params.identityFile)
+        await addToConfigFile(params.sshKeyName, params.user, params.server, params.identityFile)
         await addKownHost(params.server)
         const source = resolveHomeFolder(params.source)
         await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)

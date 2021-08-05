@@ -40,7 +40,8 @@ export async function copyFiles(identityFile: string, source: string, server: st
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
 }
-export function addToConfigFile(sshDir: string, host: string, user: string, hostName: string, identityFile: string) {
+export async function addToConfigFile(host: string, user: string, hostName: string, identityFile: string) {
+    await io.mkdirP(sshFolder)
     const config = join(sshFolder, "config")
     const configEntry = `
 HOST ${host}
