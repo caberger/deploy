@@ -40,7 +40,7 @@ Usage
 Now you can access your server with standard run commands just like this:
 ```yaml
 - name: install ssh key
-    uses: caberger/deploy@v1.0
+    uses: caberger/install-ssh-key@v1.0
     with:
         ssh-private-key:  ${{ secrets.SSH_SERVER_PRIVATE_KEY }}
         user: ${{ secrets.SERVER_USER }}

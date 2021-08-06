@@ -22,7 +22,7 @@ jobs:
 
       - name: install ssh key
         id: install-ssh
-        uses: caberger/deploy@v1.0
+        uses: caberger/install-ssh-key@v1.0
         with:
           ssh-private-key:  ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           user: ${{ secrets.SERVER_USER }}
