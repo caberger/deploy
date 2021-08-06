@@ -33,7 +33,11 @@ jobs:
           mkdir -p ~/deployment
           echo "this is a test" > ~/deployment/test.txt
 
-      - name: upload artififacts to the server
+      - name: Setup tmate session (for debugging only)
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
+
+      - name: upload artifacts to the server
         run: |
           ssh server "rm -rf ~/deployment"
           scp -r ~/deployment/ server:~/
@@ -52,14 +56,27 @@ jobs:
           server: ${{ secrets.SERVER }}
           alias: server
 
-      - name: Setup tmate session (for debugging only)
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
-
-      - name: upload artififacts to the server
+      - name: upload artifacts
         run: |
           echo "this is a test for windows ssh" > test.txt
           scp test.txt server:
           ssh server pwd
           ssh server "ls -l"
           ssh server "cat test.txt"
+  osx:
+    name: ssh and scp on osx runner
+    runs-on: macos-latest
+    steps:
+      - name: install ssh key on osx
+        uses: caberger/install-ssh-key@v1.0
+        with:
+          ssh-private-key:  ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          user: ${{ secrets.SERVER_USER }}
+          server: ${{ secrets.SERVER }}
+          alias: server
+
+      - name: upload artifacts
+        run: |
+          echo "this is a test for windows ssh" > test-mac.txt
+          scp test-mac.txt server:
+          ssh server "cat test-mac.txt"
