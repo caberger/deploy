@@ -1,5 +1,5 @@
 {
-  "name": "deploy",
+  "name": "install-ssh-key",
   "version": "1.0.0",
   "description": "github action to deploy build artifacts to server by ssh and scp",
   "main": "index.js",
