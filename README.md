@@ -29,7 +29,7 @@ Usage
 - append the public part of the key to your ~/.ssh/authorized_keys file on your server:
 
     ```bash
-    ssh-copy-id -n -i server server
+    ssh-copy-id -i server server
     ```
 
 - add the following snippet to your workflow:

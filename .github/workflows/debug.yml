@@ -19,10 +19,6 @@ jobs:
     name: upload client installers
     runs-on: ubuntu-latest
     steps:
-      - name: simulate a build of the project
-        run: |
-          mkdir -p ~/deployment
-          echo "this is a test" > ~/deployment/test.txt
 
       - name: install ssh key
         id: install-ssh
@@ -37,11 +33,14 @@ jobs:
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
 
+      - name: simulate a build of the project
+        run: |
+          mkdir -p ~/deployment
+          echo "this is a test" > ~/deployment/test.txt
+
       - name: upload artififacts to the server
         run: |
-          ssh server "ls -l"
           ssh server "rm -rf ~/deployment"
           scp -r ~/deployment/ server:~/
           ssh server "ls -l ~/deployment"
-
-
+          ssh server "cat ~/deployment/test.txt"
