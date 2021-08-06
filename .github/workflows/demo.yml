@@ -29,10 +29,6 @@ jobs:
           server: ${{ secrets.SERVER }}
           alias: server
 
-      - name: Setup tmate session (for debugging only)
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
-
       - name: simulate a build of the project
         run: |
           mkdir -p ~/deployment
@@ -45,7 +41,7 @@ jobs:
           ssh server "ls -l ~/deployment"
           ssh server "cat ~/deployment/test.txt"
   windows:
-    name: ssh and scp on ubuntu
+    name: ssh and scp on windows
     runs-on: windows-latest
 
     steps:
@@ -58,8 +54,12 @@ jobs:
           server: ${{ secrets.SERVER }}
           alias: server
 
+      - name: Setup tmate session (for debugging only)
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
+
       - name: upload artififacts to the server
         run: |
           echo "this is a test for windows ssh" > ~/test.txt
-          scp ~/test.txt server:~/
-          ssh server "type ~/test.txt"
+          scp ~/test.txt server:
+          ssh server "type test.txt"

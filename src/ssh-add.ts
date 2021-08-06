@@ -6,9 +6,7 @@ import * as util from "util"
 import {exec} from "child_process"
 import params from "./startup"
 
-//export const SSH_KEY_DIR = "sshkeys"
 const sshFolder = params.sshDir
-
 const execPromise = util.promisify(exec)
 
 export async function addSshKey(fileName: string, key: string) {
