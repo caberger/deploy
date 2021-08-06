@@ -48,3 +48,8 @@ Now you can access your server with standard run commands just like this:
     ssh server "ls -l ~"
 ```
 See [demo.yml](.github/workflows/demo.yml) for a more detailled example.
+
+Debugging your ssh commands
+==
+
+For debugging your ssh and scp operations you can use tmate by [manually running the workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) and enter __enabled__ in the debug field. For details see [action-tmate](https://github.com/mxschmitt/action-tmate) 
