@@ -1,4 +1,4 @@
-name: deployment test
+name: demonstration of ssh and scp
 
 on:
   workflow_dispatch:
