@@ -7,19 +7,19 @@
     "start": "npm run build && node dist/index.js",
     "build.clean":"ncc build src/clean.ts --license licenses.txt --minify --out dist/clean && mv dist/clean/index.js dist/clean.js",
     "build": "ncc build src/index.ts --license licenses.txt --minify && npm run build.clean",
-    "commit": "git push --delete origin v1.0 && git tag -d v1.0 && git tag -a -m 'deploy' v1.0 &&  git push --follow-tags"
+    "commit": "git push --delete origin v1.0 && git tag -d v1.0 && git tag -a -m 'initial' v1.0 && git push --follow-tags"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caberger/deploy.git"
+    "url": "git+https://github.com/caberger/install-ssh-key.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/caberger/deploy/issues"
+    "url": "https://github.com/cabergerinstall-ssh-key/issues"
   },
-  "homepage": "https://github.com/caberger/deploy#readme",
+  "homepage": "https://github.com/caberger/install-ssh-key#readme",
   "dependencies": {
     "@actions/core": "^1.4.0",
     "@actions/github": "^5.0.0",

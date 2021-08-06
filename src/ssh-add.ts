@@ -4,8 +4,6 @@ import {join} from "path"
 import * as core from "@actions/core"
 import * as util from "util"
 import {exec} from "child_process"
-
-import {resolveHomeFolder} from "./utils"
 import params from "./startup"
 
 //export const SSH_KEY_DIR = "sshkeys"
@@ -30,13 +28,6 @@ export async function addKownHost(server: string) {
     core.info(`created ${sshFolder}`)
     const knownHosts = join(sshFolder, "known_hosts")
     const cmd = `ssh-keyscan -H -t rsa -v ${server}  >> ${knownHosts}`
-    const {stdout, stderr} = await execPromise(cmd)
-    core.info(stdout)
-}
-export async function copyFiles(identityFile: string, source: string, server: string, user: string, destination: string) {
-    const sourceFolder = resolveHomeFolder(source)
-    const cmd = `scp -i ${identityFile} -r ${sourceFolder} ${user}@${server}:${destination}`
-    core.info(`cp ${sourceFolder} ${destination}`)
     const {stdout, stderr} = await execPromise(cmd)
     core.info(stdout)
 }
