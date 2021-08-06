@@ -31,7 +31,7 @@ jobs:
       - name: simulate a build of the project
         run: |
           mkdir -p ~/deployment
-          echo "this is a test" > ~/deployment/test.txt
+          echo "this is a test from ubuntu runner" > ~/deployment/test.txt
 
       - name: Setup tmate session (for debugging only)
         uses: mxschmitt/action-tmate@v3
@@ -77,6 +77,6 @@ jobs:
 
       - name: upload artifacts
         run: |
-          echo "this is a test for windows ssh" > test-mac.txt
+          echo "this is a test for osx ssh" > test-mac.txt
           scp test-mac.txt server:
           ssh server "cat test-mac.txt"
