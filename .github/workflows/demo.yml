@@ -16,7 +16,7 @@ defaults:
 
 jobs:
   deploy:
-    name: upload client installers
+    name: demonstrate usage of ssh and scp
     runs-on: ubuntu-latest
     steps:
 
