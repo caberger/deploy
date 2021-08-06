@@ -30,7 +30,7 @@ jobs:
         with:
           ssh-private-key:  ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           user: ${{ secrets.SERVER_USER }}
-          server: ${{ secrets.SERVER_USER }}
+          server: ${{ secrets.SERVER }}
           alias: server
 
       - name: upload artififacts to the server
