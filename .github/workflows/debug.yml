@@ -33,14 +33,15 @@ jobs:
           server: ${{ secrets.SERVER }}
           alias: server
 
-      - name: upload artififacts to the server
-        run: |
-          ssh server "ls -l"
-#          ssh server "rm -rf ~/deployment"
-#          scp -r ~/deployment/ server:~/
-#          ssh server "ls -l ~/deployment"
-
       - name: Setup tmate session (for debugging only)
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
+
+      - name: upload artififacts to the server
+        run: |
+          ssh server "ls -l"
+          ssh server "rm -rf ~/deployment"
+          scp -r ~/deployment/ server:~/
+          ssh server "ls -l ~/deployment"
+
 
