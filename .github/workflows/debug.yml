@@ -35,9 +35,10 @@ jobs:
 
       - name: upload artififacts to the server
         run: |
-          ssh server "rm -rf ~/deployment"
-          scp -r ~/deployment/ server:~/
-          ssh server "ls -l ~/deployment"
+          ssh server "ls -l"
+#          ssh server "rm -rf ~/deployment"
+#          scp -r ~/deployment/ server:~/
+#          ssh server "ls -l ~/deployment"
 
       - name: Setup tmate session (for debugging only)
         uses: mxschmitt/action-tmate@v3
