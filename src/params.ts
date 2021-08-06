@@ -4,8 +4,6 @@ export class Params {
     sshKeyName!: string
     key!: string
     server!: string
-    source!: string
-    destinationFolder!: string
     user!: string
     tempPath: string
     sshDir: string

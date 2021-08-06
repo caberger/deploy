@@ -5,26 +5,17 @@ inputs:
     description: private ssh key for destination server
     required: true
     default: "this is not a valid key"
-  ssh-key-name:
-    description: the file name that is used to store the key (no folder)
-    required: true
-    default: "server_rsa"
+  user:
+    description: the user name on the destination server
+    required: false
+    default: root
   server:
     description: the destination server
     required: true
-    default: "www.example.com"
-  source:
-    description: the source folder
-    required: true
-    default: "~/deployment/"
-  destination-folder:
-    description: the destination folder, relative to the home path of the user
-    required: true
-    default: "tmp/"
-  user:
-    description: the user name on the destination server
-    required: true
-    default: root
+  alias:
+    description: the alias for the server used in ssh and scp commands
+    required: false
+    default: "server"
 
 outputs:
   key-file: # id of output

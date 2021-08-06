@@ -19,7 +19,7 @@ jobs:
     name: upload client installers
     runs-on: ubuntu-latest
     steps:
-      - name: prepare upload
+      - name: simulate a build of the project
         run: |
           mkdir -p ~/deployment
           echo "this is a test" > ~/deployment/test.txt
@@ -28,18 +28,18 @@ jobs:
         id: install-ssh
         uses: caberger/deploy@v1.0
         with:
-          ssh-private-key:  ${{ secrets.FS_CLOUD_ABERGER }}
-          ssh-key-name: fs
-          server: fs.cloud.htl-leonding.ac.at
-          source: "~/deployment/*"
-          destination-folder: "mist/deploy"
+          ssh-private-key:  ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           user: ${{ secrets.SERVER_USER }}
+          server: ${{ secrets.SERVER_USER }}
+          alias: server
 
-      - name: display result
+      - name: upload artififacts to the server
         run: |
-          cat ~/deployment/test.txt
+          ssh server "rm -rf ~/deployment"
+          scp -r ~/deployment/ server:~/
+          ssh server "ls -l ~/deployment"
 
-      - name: Setup tmate session
+      - name: Setup tmate session (for debugging only)
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
 

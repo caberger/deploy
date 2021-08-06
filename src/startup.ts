@@ -11,11 +11,9 @@ async function init() {
 async function runnerSetup() {
     core.info("runner setup")
     const params = new Params()
-    params.sshKeyName =  core.getInput("ssh-key-name")
+    params.sshKeyName =  core.getInput("alias")
     params.key = core.getInput("ssh-private-key")
     params.server = core.getInput("server")
-    params.source = core.getInput("source")
-    params.destinationFolder = core.getInput("destination-folder")
     params.user = core.getInput("user")
     params.tempPath = process.env.RUNNER_TEMP
     params.sshDir = join(homeDir(), ".ssh")

@@ -17,8 +17,8 @@ async function run() {
         core.info(`file ${identityFileName} created`)
         await addToConfigFile(params.sshKeyName, params.user, params.server, params.identityFile)
         await addKownHost(params.server)
-        const source = resolveHomeFolder(params.source)
-        await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
+        //const source = resolveHomeFolder(params.source)
+        //await copyFiles(identityFileName, source, params.server, params.user, params.destinationFolder)
     } catch (error) {
         core.setFailed(error.message)
     }
