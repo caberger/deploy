@@ -62,4 +62,4 @@ jobs:
         run: |
           echo "this is a test for windows ssh" > ~/test.txt
           scp ~/test.txt server:
-          ssh server "type test.txt"
+          ssh server "cat test.txt"
