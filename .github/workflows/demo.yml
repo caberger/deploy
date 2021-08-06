@@ -21,7 +21,6 @@ jobs:
     steps:
 
       - name: install ssh key on ubuntu
-        id: install-ssh
         uses: caberger/install-ssh-key@v1.0
         with:
           ssh-private-key:  ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
@@ -40,13 +39,12 @@ jobs:
           scp -r ~/deployment/ server:~/
           ssh server "ls -l ~/deployment"
           ssh server "cat ~/deployment/test.txt"
+
   windows:
     name: ssh and scp on windows
     runs-on: windows-latest
-
     steps:
       - name: install ssh key on windows
-        id: install-ssh
         uses: caberger/install-ssh-key@v1.0
         with:
           ssh-private-key:  ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
@@ -60,6 +58,8 @@ jobs:
 
       - name: upload artififacts to the server
         run: |
-          echo "this is a test for windows ssh" > ~/test.txt
-          scp ~/test.txt server:
+          echo "this is a test for windows ssh" > test.txt
+          scp test.txt server:
+          ssh server pwd
+          ssh server "ls -l"
           ssh server "cat test.txt"
