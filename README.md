@@ -1,6 +1,6 @@
 # install-ssh-key Github Action
 
-This [action](https://github.com/features/actions) installs a private key into the current [github runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) process. So [ssh](https://www.openssh.com/), scp and sftp can be used
+This [action](https://github.com/features/actions) installs a private key into the current [github runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) process. So [ssh](https://www.openssh.com/), scp and sftp and rsync can be used
 to access your server from within the workflow. 
 
 Motivation
@@ -51,6 +51,9 @@ Now you can access your server with standard run commands just like this:
     scp ~/test.txt server:~/
     ssh server "ls -l ~"
 ```
+
+In the above example we have set the alias __server__ for your server. You can choose an arbitrary alias, and use that as the first argument to ssh instead of the full qualified domain name of your server. The alias is used to enter the required information into your .ssh/config file on the runner under that name.
+
 See [demo.yml](.github/workflows/demo.yml) for a more detailled example.
 
 Debugging your ssh commands
