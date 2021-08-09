@@ -33,6 +33,7 @@ Usage
     ```bash
         ssh -i server my-user-name@my-server.example.com "ls -l"
     ```
+    this must show the contents of your home folder on the server without a login prompt.
 - add the generated private key __server__ as the [github secret](https://docs.github.com/en/actions/reference/encrypted-secrets) with the name __SERVER_SSH_PRIVATE_KEY__ to your repository.
 - add your user name on the server as the github secret __SERVER_USER__
 - add the full qualified domain name of your server as the github secret __SERVER__ 
