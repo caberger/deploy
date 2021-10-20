@@ -33,6 +33,9 @@ jobs:
           mkdir -p ~/deployment
           echo "this is a test from ubuntu runner" > ~/deployment/test.txt
 
+      - name: keyscan
+        run: ssh-keyscan -H -t rsa -v o.aberger.at || echo "keyscan failed"
+
       - name: Setup tmate session (for debugging only)
         uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
