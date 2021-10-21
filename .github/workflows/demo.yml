@@ -20,12 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: keyscan
-        run: ssh-keyscan -H -t rsa -v o.aberger.at || echo "keyscan failed"
-      - name: Setup tmate session (for debugging only)
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
-
       - name: install ssh key on ubuntu
         uses: caberger/install-ssh-key@v1.0
         with:
@@ -33,13 +27,16 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           server: ${{ secrets.SERVER }}
           alias: server
+      - name: keyscan
+        run: ssh-keyscan -H -t rsa -v o.aberger.at || echo "keyscan failed"
+      - name: Setup tmate session (for debugging only)
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'enabled' }}
 
       - name: simulate a build of the project
         run: |
           mkdir -p ~/deployment
           echo "this is a test from ubuntu runner" > ~/deployment/test.txt
-
-
 
       - name: upload artifacts to the server
         run: |
